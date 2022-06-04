@@ -1,5 +1,5 @@
 //import React,{useState, useEffect} from "react";  
-import React,{useState} from "react"; 
+import React,{useState,useEffect} from "react"; 
 import './App.css';
 import Axios from 'axios';
 function App() { 
@@ -16,6 +16,13 @@ function App() {
  const [booksource,setBookSource] = useState('')  
  const [spelltext,setSpellText] = useState('')  
  const [spelltype,setSpellType] = useState('') 
+ const[spellList, setspellList]= useState([])
+
+useEffect(() => { 
+  Axios.get('http://localhost:3001/api/get').then((response) => { 
+    setspellList(response.data)
+  });
+}, []);
 
  const submitSpell = () => { 
  Axios.post('http://localhost:3001/api/insert',{ 
@@ -38,7 +45,7 @@ function App() {
   })
  };
   return ( 
-  <div className="App"><h1>spellorganizer</h1>  
+  <div className="App"><h1>spellorganizer </h1>  
     
 
     <div className = "form"> 
@@ -90,7 +97,13 @@ function App() {
     <input type="text" name= "spell type"onChange={(e)=> { 
      setSpellType(e.target.value)
     }}/> 
-    <button onClick={submitSpell}>submit</button>
+    <button onClick={submitSpell}class = "text-left">submit</button>  
+
+
+
+      {spellList.map((val) => { 
+        return <h1>spellName:{val.spellName} | school: {val.school}</h1>
+      })}
     </div>
   </div>  
   );
