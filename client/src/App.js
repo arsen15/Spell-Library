@@ -24,7 +24,8 @@ useEffect(() => {
   });
 }, []);
 
- const submitSpell = () => { 
+ const submitSpell = () => {  
+   /*
  Axios.post('http://localhost:3001/api/insert',{ 
    spellName:spellName, 
    spellLevel:spellLevel, 
@@ -40,15 +41,48 @@ useEffect(() => {
    spelltype:spelltype 
 
 
-  }).then(()=> { 
+  }).then(()=> {  
+    setspellList([...spellList, {spellName:spellName,spellLevel:spellLevel },]);
     alert("successful insert")
-  })
- };
-  return ( 
-  <div className="App"><h1>spellorganizer </h1>  
-    
+  })  */
 
-    <div className = "form"> 
+  Axios.post('http://localhost:3001/api/insert',{ 
+    spellName:spellName, 
+    spellLevel:spellLevel, 
+    school:school, 
+    ritual:ritual, 
+    castingtime:castingtime, 
+    components:components, 
+    duration:duration, 
+    spellrange:spellrange, 
+    concentration:concentration, 
+    booksource:booksource, 
+    spelltext:spelltext, 
+    spelltype:spelltype 
+    
+ 
+   }); 
+   setspellList([...spellList, {spellName:spellName,spellLevel:spellLevel,school:school, 
+    ritual:ritual, 
+    castingtime:castingtime, 
+    components:components, 
+    duration:duration, 
+    spellrange:spellrange, 
+    concentration:concentration, 
+    booksource:booksource, 
+    spelltext:spelltext, 
+    spelltype:spelltype},]);
+ 
+
+
+ };
+  return (  
+    
+   
+  
+    
+  <div className="App"><h1>spellorganizer </h1>  
+    <div className = "form">  
     <label>Spell Name</label>
     <input type="text" name= "spell Name" onChange={(e)=> { 
      setSpellName(e.target.value)
@@ -98,13 +132,31 @@ useEffect(() => {
      setSpellType(e.target.value)
     }}/> 
     <button onClick={submitSpell}class = "text-left">submit</button>  
+       
+     
 
 
+      {spellList.map((val) => {   
+        return(
+        <div className = "card">  
+        <h1> {val.spellName}</h1> 
+        <label> spellLevel: {val.spellLevel}</label> 
+        <label> school: {val.school}</label> 
+        <label> ritual: {val.ritual}</label> 
+        <label> castingtime: {val.castingtime}</label> 
+        <label> components: {val.components}</label> 
+        <label> duration: {val.duration}</label> 
+        <label> spellrange: {val.spellrange}</label> 
+        <label> concentration: {val.concentration}</label>  
+        <label> booksource: {val.booksource}</label> 
+        <label> spelltype: {val.spelltype}</label>
+        <p>spelltext: {val.spelltext}</p>    
+        </div>
+      
+        );
+      })} 
 
-      {spellList.map((val) => { 
-        return <h1>spellName:{val.spellName} | school: {val.school}</h1>
-      })}
-    </div>
+    </div>   
   </div>  
   );
 }
