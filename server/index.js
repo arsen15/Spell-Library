@@ -15,13 +15,23 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({extended:true})) 
 
 app.get("/api/get", (req,res) => { 
- const sqlSelect = "SELECT *  FROM spells"; 
+ const sqlSelect = "SELECT *  FROM spells;"; 
  db.query(sqlSelect,(err,result) => { 
    res.send(result);
-
+     console.log(err);
  });
 
-});
+}); 
+
+app.get("/api/ButtonType:buttonType", (req,res) => {  
+  const buttonType = req.params.buttonType; 
+  console.log("beans"+buttonType);
+  const sqlSelect = "SELECT *  FROM spells where spells.spelltype = ?;"; 
+  db.query(sqlSelect, [buttonType], (err,result) => { 
+    res.send(result);
+  });
+ });
+ 
 
 
 
@@ -29,7 +39,7 @@ app.post("/api/insert",(req,res)=> {
     
 
     const spellName = req.body.spellName 
-    const spellLevel = req.body.spellLevel  
+    const spelllevel = req.body.spelllevel  
     const school = req.body.school 
     const ritual = req.body.ritual 
     const castingtime = req.body.castingtime 
@@ -44,7 +54,7 @@ app.post("/api/insert",(req,res)=> {
    // const sqlInsert = "insert into spells (sp_no,spellName,spelllevel,school,ritual,castingtime,components,duration,spellrange,concentration,book_no,booksource _spelltext_spelltype_us_no) values (11,'test',5,'test','no')"
    // const sqlInsert = "insert into allspellstable (spellname,spelllevel,school,ritual,castingtime,components,duration,concentration,booksource,spelltext) values (?,?,'bean','bean','bean','bean','bean','bean','bean','bean')" 
    const sqlInsert = "INSERT INTO spells (sp_no,spellName,spelllevel,school,ritual,castingtime,components,duration,spellrange,concentration,book_no,booksource,spelltext,spelltype,us_no) VALUES (0,?,?,?,?,?,?,?,?,?,1,?,?,?,1);"
-    db.query(sqlInsert,[spellName,spellLevel,school,ritual,castingtime,components,duration,spellrange,concentration,booksource,spelltext,spelltype], (err,result)=> { 
+    db.query(sqlInsert,[spellName,spelllevel,school,ritual,castingtime,components,duration,spellrange,concentration,booksource,spelltext,spelltype], (err,result)=> { 
        console.log(err);
     });
 
