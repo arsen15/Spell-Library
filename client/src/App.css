@@ -43,13 +43,14 @@ input, label {
 .form3 { 
   float: left; 
  
-  margin-right: 500px;
+  margin-right: 50px;
   margin-bottom: 40px; 
 }   
 
 
 
-.text-left { 
+.text-left {  
+  float:left;
   text-align: left; 
   align-items:left; 
   justify-content:left; 
@@ -79,6 +80,14 @@ input, label {
   position: absolute;
 }  
 
-.logo { 
-  
+.sortingButtons {  
+  float:left; 
+  text-align:left;
+  justify-content: "space-between";
+   padding-left: 50px;
+}
+
+
+.logoform { 
+   margin-right:300px;
 }

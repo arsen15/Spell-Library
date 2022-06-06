@@ -22,12 +22,13 @@ function App() {
  const[spellList, setspellList]= useState([]) 
  var[buttonType,setButtonType] = useState('')
  var[buttonLevel,setButtonLevel] = useState('') 
- var[buttonSchool,setButtonSchool] = useState('')  
+ var[buttonSchool,setButtonSchool] = useState('')   
+ var[buttonConcentration,setButtonConcentration] = useState('')  
   
  let filterArray = [ 
    buttonType, 
    buttonLevel, 
-   buttonSchool ];  
+   buttonSchool,buttonConcentration ];  
   
 useEffect(() => { 
   Axios.get('http://localhost:3001/api/get').then((response) => { 
@@ -122,8 +123,10 @@ const submitType  = () => {
  };
   return (  
     
-    <div className="App"> <h1>spellorganizer</h1>
-        <img src={logo} height ="200" width ="400" alt="Logo" />
+    <div className="App"> <h1>spellorganizer</h1> 
+    <div className logoform> 
+        <img src={logo} height ="200" width ="400" alt="Logo" /> 
+        </div> 
       <div className="form1">
         <label>Spell Name</label>
         <input type="text" name="spell Name" onChange={(e) => {
@@ -180,26 +183,37 @@ const submitType  = () => {
         <input type="text" name="spell type" onChange={(e) => {
           setSpellType(e.target.value);
         } } /> 
-         
+           <label> user name</label>
+        <input type="text" name="spell type" onChange={(e) => {
+          //setSpellType(e.target.value);
+        } } />  
+          <label> password</label>
+        <input type="text" name="spell type" onChange={(e) => {
+         // setSpellType(e.target.value);
+        } } /> 
        
       </div> 
       <div className="sortingButtons">
-        <label> type</label>
+        <label> type filter</label>
         <input type="text" name="type" onChange={(e) => { 
             setButtonType(e.target.value); 
            // console.log(e.target.value); 
          //   console.log("beans"+buttonType);
          // setConcentration(e.target.value);
         }}/> 
-         <label> level</label>
-        <input type="text" name="type" onChange={(e) => {  
+        <label> level filter</label>
+        <input type="text" name="level" onChange={(e) => {  
             setButtonLevel(e.target.value);
         }}/>  
-         <label> school</label>
-         <input type="text" name="type" onChange={(e) => {  
+        <label> school filter</label>
+        <input type="text" name="school" onChange={(e) => {  
             setButtonSchool(e.target.value);
-        }}/>
-         <button onClick={typeFilter}class = "text-left">typeSubmit</button>   
+        }}/> 
+        <label> Concentration filter</label>
+        <input type="text" name="concentration" onChange={(e) => {  
+            setButtonConcentration(e.target.value);
+        }}/> 
+         <button onClick={typeFilter}>typeSubmit</button>   
        
           </div> 
          
