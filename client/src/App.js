@@ -1,6 +1,7 @@
 //import React,{useState, useEffect} from "react";  
 import React,{useState,useEffect} from "react"; 
-import './App.css';
+import './App.css'; 
+import logo from './logo.png';
 import Axios from 'axios';
 function App() { 
 
@@ -20,7 +21,14 @@ function App() {
 
  const[spellList, setspellList]= useState([]) 
  var[buttonType,setButtonType] = useState('')
- 
+ var[buttonLevel,setButtonLevel] = useState('') 
+ var[buttonSchool,setButtonSchool] = useState('')  
+  
+ let filterArray = [ 
+   buttonType, 
+   buttonLevel, 
+   buttonSchool ];  
+  
 useEffect(() => { 
   Axios.get('http://localhost:3001/api/get').then((response) => { 
     setspellList(response.data) 
@@ -36,9 +44,9 @@ useEffect(() => {
 }, [filterByTypeTrigger]); 
  */
  const typeFilter = () => {   
-   
-   Axios.get(`http://localhost:3001/api/buttonType${buttonType}`).then((response) => {  
-  
+
+  // Axios.get('http://localhost:3001/api/buttonType', {params: {filterArray}}).then((response) => {  
+    Axios.get(`http://localhost:3001/api/filterArray${filterArray}`).then((response) => {  
     console.log(buttonType+"beans test beans");
     setspellList(response.data);
    }); 
@@ -106,7 +114,8 @@ const submitType  = () => {
     concentration:concentration, 
     booksource:booksource, 
     spelltext:spelltext, 
-    spelltype:spelltype}]);
+    spelltype:spelltype}]); 
+
  
 
 
@@ -114,7 +123,7 @@ const submitType  = () => {
   return (  
     
     <div className="App"> <h1>spellorganizer</h1>
-
+        <img src={logo} height ="200" width ="400" alt="Logo" />
       <div className="form1">
         <label>Spell Name</label>
         <input type="text" name="spell Name" onChange={(e) => {
@@ -181,10 +190,19 @@ const submitType  = () => {
            // console.log(e.target.value); 
          //   console.log("beans"+buttonType);
          // setConcentration(e.target.value);
+        }}/> 
+         <label> level</label>
+        <input type="text" name="type" onChange={(e) => {  
+            setButtonLevel(e.target.value);
+        }}/>  
+         <label> school</label>
+         <input type="text" name="type" onChange={(e) => {  
+            setButtonSchool(e.target.value);
         }}/>
-         <button onClick={typeFilter}class = "text-left">typeSubmit</button>  
+         <button onClick={typeFilter}class = "text-left">typeSubmit</button>   
+       
           </div> 
-   
+         
       
     <div className = "form3"> 
     {spellList.map((val) => {   
@@ -208,12 +226,12 @@ const submitType  = () => {
     })}   
     </div>
     </div> 
-     
+  
     
     
   
     
-    
+  
     
   
     /*
@@ -293,7 +311,8 @@ const submitType  = () => {
       })} 
 
     </div>   
-  </div>   */
+  </div>   */ 
+  
   );
 }
 

@@ -22,14 +22,104 @@ app.get("/api/get", (req,res) => {
  });
 
 }); 
+app.get("/api/FilterArray:filterArray", (req,res) => {  
+//app.get("/api/ButtonType:buttonType", (req,res) => {  
+  var temp = "SELECT *  FROM spells where"; 
+  /*  
+  var buttonType = req.params.buttonType; 
+  console.log(buttonType);
+ var buttonLevel = req.params.buttonLevel;  
+ console.log(buttonLevel); 
+ var buttonSchool = req.params.buttonSchool;
+  var andOn = false;  */  
+  var andOn = false;
+  const arr = req.params.filterArray.toString().split(','); 
+  const buttonType = arr[0]; 
+  console.log(buttonType); 
+  const buttonLevel =  arr[1];   
+ // console.log(buttonLevel);
+  const buttonSchool = arr[2];  
+ // console.log(buttonSchool);
+  var typebool = false; 
+  var levelbool = false; 
+  var schoolbool = false;
+  if(buttonType != null && buttonType != '') {  
+    if(andOn == true) { 
+      temp =temp+" and"; 
+    }
+    temp =temp+" spells.spelltype  = ?"; 
+    if(andOn == false) { 
+      andOn = true;
+    } 
+    typebool = true;
+  } 
+   console.log(temp+"   after type");
+  if(buttonLevel != null && buttonLevel != '') {   
+    console.log(temp); 
+    if(andOn == true) { 
+     temp=temp+" and";
 
-app.get("/api/ButtonType:buttonType", (req,res) => {  
-  const buttonType = req.params.buttonType; 
-  console.log("beans"+buttonType);
-  const sqlSelect = "SELECT *  FROM spells where spells.spelltype = ?;"; 
-  db.query(sqlSelect, [buttonType], (err,result) => { 
+    }
+      temp =temp+" spells.spelllevel = ?";
+
+    if(andOn== false) { 
+      andOn = true;
+    } 
+    levelbool  = true;
+  } 
+  console.log(temp+"   after level");
+  if(buttonSchool != null && buttonSchool != '') {  
+    console.log(temp);
+    if(andOn == true) { 
+      temp=temp+" and";
+ 
+     }
+       temp =temp+" spells.school = ?";
+ 
+     if(andOn== false) { 
+       andOn = true;
+     }
+     schoolbool=true;
+  }   
+  console.log(temp+"   after school");
+  temp = temp+";";
+   console.log(temp);
+   const sqlSelect = temp;
+//  const sqlSelect = "SELECT *  FROM spells where spells.spelltype = ?;";  
+   if(typebool == true && levelbool == true && schoolbool ==true ) { 
+    db.query(sqlSelect, [buttonType,buttonLevel,buttonSchool], (err,result) => { 
+      res.send(result);
+    });
+
+   } else if(typebool == true && levelbool == true && schoolbool ==false ) { 
+  db.query(sqlSelect, [buttonType,buttonLevel], (err,result) => { 
     res.send(result);
-  });
+  });  
+   } else if(typebool == true && levelbool == false && schoolbool ==false ) {  
+     console.log("beans beans")
+    db.query(sqlSelect, [buttonType], (err,result) => { 
+      res.send(result);
+    }); 
+   }else if(typebool == false && levelbool == false && schoolbool ==false) {  
+     /*
+    db.query(sqlSelect, [buttonType,buttonLevel], (err,result) => { 
+      res.send(result);
+    }); */
+   } else if(typebool == false && levelbool ==true && schoolbool == false) { 
+    db.query(sqlSelect, [buttonLevel], (err,result) => { 
+      res.send(result);
+    });
+   } else if(typebool == false && levelbool == true && schoolbool == true) { 
+    db.query(sqlSelect, [buttonLevel,buttonSchool], (err,result) => { 
+      res.send(result);
+    });  
+
+   }else if (typebool == false && levelbool == false && schoolbool == true) { 
+    db.query(sqlSelect, [buttonSchool], (err,result) => { 
+      res.send(result);
+    });  
+
+   }
  });
  
 
