@@ -132,34 +132,34 @@ const submitType  = () => {
         <input type="text" name="spell Name" onChange={(e) => {
           setSpellName(e.target.value);
         } } />
-        <label> spell level</label>
+        <label> Spell Level</label>
         <input type="text" name="spell level" onChange={(e) => {
           setSpelllevel(e.target.value);
         } } />
-        <label> spell school</label>
+        <label> Spell School</label>
         <input type="text" name="spell school" onChange={(e) => {
           setSpellSchool(e.target.value);
         } } />
-        <label> ritual</label>
+        <label> Ritual</label>
         <input type="text" name="spell ritual casting" onChange={(e) => {
           setRitual(e.target.value);
         } } />
       </div>
 
       <div className="form2">
-        <label> spell casting time </label>
+        <label> Spell Casting Time </label>
         <input type="text" name="spell casting time" onChange={(e) => {
           setCastingTime(e.target.value);
         } } />
-        <label> spell components</label>
+        <label> Spell Components</label>
         <input type="text" name="spell components" onChange={(e) => {
           setComponents(e.target.value);
         } } />
-        <label> spell duration</label>
+        <label> Spell Duration</label>
         <input type="text" name="spell duration" onChange={(e) => {
           setDuration(e.target.value);
         } } />
-        <label> spell range</label>
+        <label> Spell Range</label>
         <input type="text" name="spell range" onChange={(e) => {
           setSpellRange(e.target.value);
         } } /> 
@@ -167,45 +167,45 @@ const submitType  = () => {
       </div>
 
       <div className="form3">
-        <label> concentration</label>
+        <label> Concentration</label>
         <input type="text" name="concentration" onChange={(e) => {
           setConcentration(e.target.value);
         } } />
-       <label> book source</label>
+       <label> Book Source</label>
         <input type="text" name="booksource" onChange={(e) => {
           setBookSource(e.target.value);
         } } />
-        <label> spell text</label>
+        <label> Spell Text</label>
         <input type="text" name="spell text" onChange={(e) => {
           setSpellText(e.target.value);
         } } />
-        <label> spell type</label>
+        <label> Spell Type</label>
         <input type="text" name="spell type" onChange={(e) => {
           setSpellType(e.target.value);
         } } /> 
-           <label> user name</label>
+           <label> User Name</label>
         <input type="text" name="spell type" onChange={(e) => {
           //setSpellType(e.target.value);
         } } />  
-          <label> password</label>
+          <label> Password</label>
         <input type="text" name="spell type" onChange={(e) => {
          // setSpellType(e.target.value);
         } } /> 
        
       </div> 
       <div className="sortingButtons">
-        <label> type filter</label>
+        <label> Type Filter</label>
         <input type="text" name="type" onChange={(e) => { 
             setButtonType(e.target.value); 
            // console.log(e.target.value); 
          //   console.log("beans"+buttonType);
          // setConcentration(e.target.value);
         }}/> 
-        <label> level filter</label>
+        <label> Level Filter</label>
         <input type="text" name="level" onChange={(e) => {  
             setButtonLevel(e.target.value);
         }}/>  
-        <label> school filter</label>
+        <label> School Filter</label>
         <input type="text" name="school" onChange={(e) => {  
             setButtonSchool(e.target.value);
         }}/> 
@@ -224,17 +224,17 @@ const submitType  = () => {
       <div className = "card">  
       <h1> {val.spellName}</h1>  
 
-      <label> spelllevel: {val.spelllevel}</label> 
-      <label> school: {val.school}</label> 
-      <label> ritual: {val.ritual}</label> 
-      <label> castingtime: {val.castingtime}</label> 
-      <label> components: {val.components}</label> 
-      <label> duration: {val.duration}</label> 
-      <label> spellrange: {val.spellrange}</label> 
-      <label> concentration: {val.concentration}</label>  
-      <label> booksource: {val.booksource}</label> 
-      <label> spelltype: {val.spelltype}</label> 
-      <p>spelltext: {val.spelltext}</p>    
+      <label> Spell Level: {val.spelllevel}</label> 
+      <label> School: {val.school}</label> 
+      <label> Ritual: {val.ritual}</label> 
+      <label> Casting Time: {val.castingtime}</label> 
+      <label> Components: {val.components}</label> 
+      <label> Duration: {val.duration}</label> 
+      <label> Spell Range: {val.spellrange}</label> 
+      <label> Concentration: {val.concentration}</label>  
+      <label> Book Source: {val.booksource}</label> 
+      <label> Spell Type: {val.spelltype}</label> 
+      <p>Spell Text: {val.spelltext}</p>    
       </div>
       );
     })}   
