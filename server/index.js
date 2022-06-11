@@ -8,7 +8,7 @@ const  db =mysql.createPool({
     host:'localhost', 
     user: 'root' ,
     password: 'password', 
-    database: 'dnd_db' 
+    database: 'dnd_db2' 
 });
 app.use(cors()); 
 app.use(express.json());
@@ -201,7 +201,7 @@ app.post("/api/insert",(req,res)=> {
 
    // const sqlInsert = "insert into spells (sp_no,spellName,spelllevel,school,ritual,castingtime,components,duration,spellrange,concentration,book_no,booksource _spelltext_spelltype_us_no) values (11,'test',5,'test','no')"
    // const sqlInsert = "insert into allspellstable (spellname,spelllevel,school,ritual,castingtime,components,duration,concentration,booksource,spelltext) values (?,?,'bean','bean','bean','bean','bean','bean','bean','bean')" 
-   const sqlInsert = "INSERT INTO spells (sp_no,spellName,spelllevel,school,ritual,castingtime,components,duration,spellrange,concentration,book_no,booksource,spelltext,spelltype,us_no) VALUES (0,?,?,?,?,?,?,?,?,?,1,?,?,?,1);"
+   const sqlInsert = "INSERT INTO spells (spellName,spelllevel,school,ritual,castingtime,components,duration,spellrange,concentration,booksource,spelltext,spelltype) VALUES (?,?,?,?,?,?,?,?,?,1,?,?,?);"
     db.query(sqlInsert,[spellName,spelllevel,school,ritual,castingtime,components,duration,spellrange,concentration,booksource,spelltext,spelltype], (err,result)=> { 
        console.log(err);
     });
