@@ -1,14 +1,14 @@
 {
-  "main.css": "/Spell-Library/static/css/main.78ab6954.chunk.css",
-  "main.js": "/Spell-Library/static/js/main.3b43f3a6.chunk.js",
-  "main.js.map": "/Spell-Library/static/js/main.3b43f3a6.chunk.js.map",
-  "static/js/1.1c2d40fe.chunk.js": "/Spell-Library/static/js/1.1c2d40fe.chunk.js",
-  "static/js/1.1c2d40fe.chunk.js.map": "/Spell-Library/static/js/1.1c2d40fe.chunk.js.map",
+  "main.css": "/Spell-Library/static/css/main.6eb52f47.chunk.css",
+  "main.js": "/Spell-Library/static/js/main.a6baca74.chunk.js",
+  "main.js.map": "/Spell-Library/static/js/main.a6baca74.chunk.js.map",
+  "static/js/1.0ea1fb06.chunk.js": "/Spell-Library/static/js/1.0ea1fb06.chunk.js",
+  "static/js/1.0ea1fb06.chunk.js.map": "/Spell-Library/static/js/1.0ea1fb06.chunk.js.map",
   "runtime~main.js": "/Spell-Library/static/js/runtime~main.ef3d94e4.js",
   "runtime~main.js.map": "/Spell-Library/static/js/runtime~main.ef3d94e4.js.map",
   "static/media/logo.png": "/Spell-Library/static/media/logo.1edce958.png",
-  "static/css/main.78ab6954.chunk.css.map": "/Spell-Library/static/css/main.78ab6954.chunk.css.map",
+  "static/css/main.6eb52f47.chunk.css.map": "/Spell-Library/static/css/main.6eb52f47.chunk.css.map",
   "index.html": "/Spell-Library/index.html",
-  "precache-manifest.ee3e11ebd21c08ea0fa2bb425198b8c0.js": "/Spell-Library/precache-manifest.ee3e11ebd21c08ea0fa2bb425198b8c0.js",
+  "precache-manifest.df5914ec0e827ae8fe668da8497b365f.js": "/Spell-Library/precache-manifest.df5914ec0e827ae8fe668da8497b365f.js",
   "service-worker.js": "/Spell-Library/service-worker.js"
 }
