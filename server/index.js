@@ -8,8 +8,9 @@ const  db =mysql.createPool({
     host:'localhost', 
     user: 'root' ,
     password: 'password', 
-    database: 'dnd_db2' 
+    database: 'dnd_db' 
 });
+
 app.use(cors()); 
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended:true})) 
@@ -22,16 +23,19 @@ app.get("/api/get", (req,res) => {
  });
 
 }); 
-app.get("/api/FilterArray:filterArray", (req,res) => {  
-//app.get("/api/ButtonType:buttonType", (req,res) => {  
-  var temp = "SELECT *  FROM spells where"; 
-  /*  
-  var buttonType = req.params.buttonType; 
-  console.log(buttonType);
- var buttonLevel = req.params.buttonLevel;  
- console.log(buttonLevel); 
- var buttonSchool = req.params.buttonSchool;
-  var andOn = false;  */  
+
+app.get("/api/getCount", (req,res) => { 
+  const sqlSelect = "SELECT distinct count(user_spells.user_name), spells.school FROM spells, user_spells WHERE spells.spellName = user_spells.spellName and spells.school = 'evocation';"; 
+  db.query(sqlSelect,(err,result) => { 
+    res.send(result);
+      console.log(err);
+  });
+ 
+ }); 
+
+app.get("/api/FilterArray:filterArray", (req,res) => {    
+  var temp = "SELECT DISTINCT spells.spellName, spells.spelllevel, spells.school, spells.ritual, spells.castingtime, spells.components, spells.duration, spells.spellrange, spells.concentration, spells.booksource, spells.spelltext, spells.spelltype  FROM spells, user_spells where"; 
+   
   var andOn = false;
   const arr = req.params.filterArray.toString().split(','); 
   const buttonType = arr[0]; 
@@ -40,11 +44,14 @@ app.get("/api/FilterArray:filterArray", (req,res) => {
  // console.log(buttonLevel);
   const buttonSchool = arr[2];   
   const buttonConcentration = arr[3];
+  const buttonUser = arr[4];
  // console.log(buttonSchool);
   var typebool = false; 
   var levelbool = false; 
   var schoolbool = false; 
   var concentrationbool = false;
+  var userbool = false;
+
   if(buttonType != null && buttonType != '') {  
     if(andOn == true) { 
       temp =temp+" and"; 
@@ -55,6 +62,7 @@ app.get("/api/FilterArray:filterArray", (req,res) => {
     } 
     typebool = true;
   } 
+
    console.log(temp+"   after type");
   if(buttonLevel != null && buttonLevel != '') {   
     console.log(temp); 
@@ -69,6 +77,7 @@ app.get("/api/FilterArray:filterArray", (req,res) => {
     } 
     levelbool  = true;
   } 
+
   console.log(temp+"   after level");
   if(buttonSchool != null && buttonSchool != '') {  
     console.log(temp);
@@ -96,11 +105,25 @@ app.get("/api/FilterArray:filterArray", (req,res) => {
        andOn = true;
      }
      concentrationbool=true;
-  }   
+  }
+  
+  if(buttonUser != null && buttonUser != '') {  
+    console.log(temp);
+    if(andOn == true) { 
+      temp=temp+" and";
+ 
+     }
+       temp =temp+" user_spells.user_name = ?";
+ 
+     if(andOn== false) { 
+       andOn = true;
+     }
+     userbool=true;
+  } 
 
-  console.log(temp+"   after school");
+  //console.log(temp+"   after school");
   temp = temp+";";
-   console.log(temp);
+   //console.log(temp);
    const sqlSelect = temp;   
    var buttonList = []; 
    
@@ -135,6 +158,18 @@ app.get("/api/FilterArray:filterArray", (req,res) => {
     else {  
       console.log(buttonList.length);
       buttonList[buttonList.length]=buttonConcentration;
+    } 
+  }
+
+  if(userbool == true) { 
+    if(buttonList.length ==0) { 
+      buttonList[0]=buttonUser;
+    } 
+    else {  
+      
+      console.log(buttonList.length);
+      buttonList[buttonList.length]=buttonUser;
+      console.log(buttonList[buttonList.length]);
     } 
   }
 
@@ -201,7 +236,7 @@ app.post("/api/insert",(req,res)=> {
 
    // const sqlInsert = "insert into spells (sp_no,spellName,spelllevel,school,ritual,castingtime,components,duration,spellrange,concentration,book_no,booksource _spelltext_spelltype_us_no) values (11,'test',5,'test','no')"
    // const sqlInsert = "insert into allspellstable (spellname,spelllevel,school,ritual,castingtime,components,duration,concentration,booksource,spelltext) values (?,?,'bean','bean','bean','bean','bean','bean','bean','bean')" 
-   const sqlInsert = "INSERT INTO spells (spellName,spelllevel,school,ritual,castingtime,components,duration,spellrange,concentration,booksource,spelltext,spelltype) VALUES (?,?,?,?,?,?,?,?,?,1,?,?,?);"
+   const sqlInsert = "INSERT INTO spells (spellName,spelllevel,school,ritual,castingtime,components,duration,spellrange,concentration,booksource,spelltext,spelltype) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);"
     db.query(sqlInsert,[spellName,spelllevel,school,ritual,castingtime,components,duration,spellrange,concentration,booksource,spelltext,spelltype], (err,result)=> { 
        console.log(err);
     });

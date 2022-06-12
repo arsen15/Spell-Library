@@ -10,13 +10,14 @@ function NavBar () {
     return(
         <nav className='navbar'>
             <div className='nav-container'>
+
                 <ul className={click ? "nav-menu active" : "nav-menu"}>
                     <li className="nav-item">
                         <NavLink exact to='/' 
                         activeClassName="active" 
                         className="nav-links" 
                         onClick={handleClick}>
-                            Home
+                            HOME
                         </NavLink>
                     </li>
 
@@ -25,7 +26,7 @@ function NavBar () {
                         activeClassName="active" 
                         className="nav-links" 
                         onClick={handleClick}>
-                            About
+                            ABOUT
                         </NavLink>
                     </li>
 
@@ -34,7 +35,7 @@ function NavBar () {
                         activeClassName="active" 
                         className="nav-links" 
                         onClick={handleClick}>
-                            Spell Types
+                            SPELL TYPES
                         </NavLink>
                     </li>
 
@@ -43,7 +44,7 @@ function NavBar () {
                         activeClassName="active" 
                         className="nav-links" 
                         onClick={handleClick}>
-                            Schools
+                            SCHOOLS
                         </NavLink>
                     </li>
 
@@ -52,11 +53,12 @@ function NavBar () {
                         activeClassName="active" 
                         className="nav-links" 
                         onClick={handleClick}>
-                            Classes
+                            CLASSES
                         </NavLink>
                     </li>
 
                 </ul>
+
             </div>
         </nav>
     );

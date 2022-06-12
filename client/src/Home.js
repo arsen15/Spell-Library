@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from "react";
-import logo from './logo.png';
+import logo from "./logo.png";
+import background from "./DragonPlus11_1920x1080_Wallpaper.jpg";
 import Axios from 'axios';
 
 function Home() {
@@ -22,12 +23,15 @@ function Home() {
     var[buttonType,setButtonType] = useState('')
     var[buttonLevel,setButtonLevel] = useState('') 
     var[buttonSchool,setButtonSchool] = useState('')   
-    var[buttonConcentration,setButtonConcentration] = useState('')  
+    var[buttonConcentration,setButtonConcentration] = useState('') 
+    var[buttonUser,setButtonUser] = useState('')
      
     let filterArray = [ 
       buttonType, 
       buttonLevel, 
-      buttonSchool,buttonConcentration 
+      buttonSchool,
+      buttonConcentration,
+      buttonUser 
      ];  
      
    useEffect(() => { 
@@ -78,11 +82,12 @@ function Home() {
     };
 
     return(
-        <div>
-            <h1>Welcome to the Home page!</h1>
+        //style={{ backgroundImage:`url(${background})`, height:1920, width:1920 }}
+        <div className="App">
+            <h1>Welcome to the D&D Spell Organizer!</h1>
 
-                    <div className logoform> 
-                <img src={logo} height ="200" width ="400" alt="Logo" /> 
+                <div > 
+                    <img src={logo} height ="200" width ="400" alt="Logo" /> 
                 </div> 
                 <div className="form1">
                 <label>Spell Name</label>
@@ -120,43 +125,41 @@ function Home() {
                 <input type="text" name="spell range" onChange={(e) => {
                     setSpellRange(e.target.value);
                 } } /> 
-                <button onClick={submitSpell}>submit</button>
+                <button onClick={submitSpell} className = "button">submit</button>
                 </div>
 
                 <div className="form3">
-                <label> Concentration</label>
-                <input type="text" name="concentration" onChange={(e) => {
-                    setConcentration(e.target.value);
-                } } />
-                <label> Book Source</label>
-                <input type="text" name="booksource" onChange={(e) => {
-                    setBookSource(e.target.value);
-                } } />
-                <label> Spell Text</label>
-                <input type="text" name="spell text" onChange={(e) => {
-                    setSpellText(e.target.value);
-                } } />
-                <label> Spell Type</label>
-                <input type="text" name="spell type" onChange={(e) => {
-                    setSpellType(e.target.value);
-                } } /> 
-                    <label> User Name</label>
-                <input type="text" name="spell type" onChange={(e) => {
-                    //setSpellType(e.target.value);
-                } } />  
-                    <label> Password</label>
-                <input type="text" name="spell type" onChange={(e) => {
-                // setSpellType(e.target.value);
-                } } /> 
+                    <label> Concentration</label>
+                    <input type="text" name="concentration" onChange={(e) => {
+                        setConcentration(e.target.value);
+                    } } />
+                    <label> Book Source</label>
+                    <input type="text" name="booksource" onChange={(e) => {
+                        setBookSource(e.target.value);
+                    } } />
+                    <label> Spell Text</label>
+                    <input type="text" name="spell text" onChange={(e) => {
+                        setSpellText(e.target.value);
+                    } } />
+                    <label> Spell Type</label>
+                    <input type="text" name="spell type" onChange={(e) => {
+                        setSpellType(e.target.value);
+                    } } /> 
+                        <label> User Name</label>
+                    <input type="text" name="spell type" onChange={(e) => {
+                        //setSpellType(e.target.value);
+                    } } />  
+                        <label> Password</label>
+                    <input type="text" name="spell type" onChange={(e) => {
+                    // setSpellType(e.target.value);
+                    } } /> 
                 
                 </div> 
+
                 <div className="sortingButtons">
                 <label> Type Filter</label>
                 <input type="text" name="type" onChange={(e) => { 
                     setButtonType(e.target.value); 
-                    // console.log(e.target.value); 
-                //   console.log("beans"+buttonType);
-                // setConcentration(e.target.value);
                 }}/> 
                 <label> Level Filter</label>
                 <input type="text" name="level" onChange={(e) => {  
@@ -166,11 +169,18 @@ function Home() {
                 <input type="text" name="school" onChange={(e) => {  
                     setButtonSchool(e.target.value);
                 }}/> 
+
                 <label> Concentration filter</label>
                 <input type="text" name="concentration" onChange={(e) => {  
                     setButtonConcentration(e.target.value);
                 }}/> 
-                <button onClick={typeFilter}>typeSubmit</button>   
+
+                <label> User filter</label>
+                <input type="text" name="user" onChange={(e) => {  
+                    setButtonUser(e.target.value);
+                }}/>
+
+                <button onClick={typeFilter} className = "filterButton">Filter</button>   
                 
                     </div> 
                 

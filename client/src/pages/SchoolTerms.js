@@ -3,7 +3,7 @@ import './SchoolTerms.css';
 
 function SchoolTerms() {
     return(
-        <div>
+        <div className="container">
             <h1 align = "left"> School Terms page</h1>
 
             <div className="school-container">
@@ -90,7 +90,12 @@ function SchoolTerms() {
                 Transmutation is a relatively wide and varied school, but is all about changing their environment. The best buffs in the game are here, and some of the best debuffs are here too!
                 </p>
             </div>
-            
+
+            <div className="school-container">
+                <p>
+                    The descriptions for each spell school came from this source:  <a href="https://www.nerdsandscoundrels.com/schools-of-magic-5e/" >Nerds + Scoundrels</a> 
+                </p>
+            </div>
         </div>
     );
 }

@@ -1,7 +1,13 @@
+.container {
+    background-color: #b83030;
+}
+
 .school-container {
     text-align: left; 
     align-items:left; 
     justify-content:left;
-    font-size: 125%;
+
+    background-color: #b83030;
+    font-size: larger;
 }
 
