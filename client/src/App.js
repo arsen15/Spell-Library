@@ -1,9 +1,12 @@
-import React,{useState,useEffect} from "react"; 
+/**
+ * Authors: Ryan Montoya, Arsen Shintemirov, Roman Antipov
+ * TCSS 445
+ * Spring 2022
+ */
+
+import React from "react"; 
 import './App.css'; 
-import logo from './logo.png';
-import Axios from 'axios';
 import {
-  BrowserRouter,
   Routes,
   Route
 } from "react-router-dom";

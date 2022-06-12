@@ -1,3 +1,9 @@
+/**
+ * Authors: Ryan Montoya, Arsen Shintemirov, Roman Antipov
+ * TCSS 445
+ * Spring 2022
+ */
+
 import React from "react";
 import "./About.css";
 

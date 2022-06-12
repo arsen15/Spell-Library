@@ -1,6 +1,11 @@
+/**
+ * Authors: Ryan Montoya, Arsen Shintemirov, Roman Antipov
+ * TCSS 445
+ * Spring 2022
+ */
+
 import React,{useState,useEffect} from "react";
 import logo from "./logo.png";
-import background from "./DragonPlus11_1920x1080_Wallpaper.jpg";
 import Axios from 'axios';
 
 function Home() {
@@ -17,7 +22,8 @@ function Home() {
     const [booksource,setBookSource] = useState('')  
     const [spelltext,setSpellText] = useState('')  
     const [spelltype,setSpellType] = useState('')  
-   
+    const [user,setUser] = useState('')
+
    
     const[spellList, setspellList]= useState([]) 
     var[buttonType,setButtonType] = useState('')
@@ -63,8 +69,8 @@ function Home() {
        concentration:concentration, 
        booksource:booksource, 
        spelltext:spelltext, 
-       spelltype:spelltype 
-       
+       spelltype:spelltype, 
+       user:user
     
       }); 
       setspellList([...spellList, {spellName:spellName,spelllevel:spelllevel,school:school, 
@@ -82,7 +88,6 @@ function Home() {
     };
 
     return(
-        //style={{ backgroundImage:`url(${background})`, height:1920, width:1920 }}
         <div className="App">
             <h1>Welcome to the D&D Spell Organizer!</h1>
 
@@ -147,12 +152,9 @@ function Home() {
                     } } /> 
                         <label> User Name</label>
                     <input type="text" name="spell type" onChange={(e) => {
-                        //setSpellType(e.target.value);
+                        setUser(e.target.value);
                     } } />  
-                        <label> Password</label>
-                    <input type="text" name="spell type" onChange={(e) => {
-                    // setSpellType(e.target.value);
-                    } } /> 
+                       
                 
                 </div> 
 
@@ -182,9 +184,8 @@ function Home() {
 
                 <button onClick={typeFilter} className = "filterButton">Filter</button>   
                 
-                    </div> 
-                
-                
+                </div> 
+                  
             <div className = "form3"> 
             {spellList.map((val) => {   
                 return(

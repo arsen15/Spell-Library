@@ -1,3 +1,9 @@
+/**
+ * Authors: Ryan Montoya, Arsen Shintemirov, Roman Antipov
+ * TCSS 445
+ * Spring 2022
+ */
+
 const express = require("express");  
 const bodyParser = require('body-parser')  
 const cors = require('cors')
@@ -41,11 +47,9 @@ app.get("/api/FilterArray:filterArray", (req,res) => {
   const buttonType = arr[0]; 
   console.log(buttonType); 
   const buttonLevel =  arr[1];   
- // console.log(buttonLevel);
   const buttonSchool = arr[2];   
   const buttonConcentration = arr[3];
   const buttonUser = arr[4];
- // console.log(buttonSchool);
   var typebool = false; 
   var levelbool = false; 
   var schoolbool = false; 
@@ -113,7 +117,8 @@ app.get("/api/FilterArray:filterArray", (req,res) => {
       temp=temp+" and";
  
      }
-       temp =temp+" user_spells.user_name = ?";
+       temp = temp+" user_spells.user_name = ?";
+       temp = temp + "and user_spells.spellName = spells.spellName";
  
      if(andOn== false) { 
        andOn = true;
@@ -121,9 +126,7 @@ app.get("/api/FilterArray:filterArray", (req,res) => {
      userbool=true;
   } 
 
-  //console.log(temp+"   after school");
   temp = temp+";";
-   //console.log(temp);
    const sqlSelect = temp;   
    var buttonList = []; 
    
@@ -177,49 +180,11 @@ app.get("/api/FilterArray:filterArray", (req,res) => {
    db.query(sqlSelect, buttonList, (err,result) => { 
     res.send(result);
   });
-//  const sqlSelect = "SELECT *  FROM spells where spells.spelltype = ?;";  
-/*  if(typebool == true && levelbool == true && schoolbool ==true ) { 
-    db.query(sqlSelect, [buttonType,buttonLevel,buttonSchool], (err,result) => { 
-      res.send(result);
-    });
 
-   } else if(typebool == true && levelbool == true && schoolbool ==false ) { 
-  db.query(sqlSelect, [buttonType,buttonLevel], (err,result) => { 
-    res.send(result);
-  });  
-   } else if(typebool == true && levelbool == false && schoolbool ==false ) {  
-     console.log("beans beans")
-    db.query(sqlSelect, [buttonType], (err,result) => { 
-      res.send(result);
-    }); 
-   }else if(typebool == false && levelbool == false && schoolbool ==false) {  
-     
-    db.query(sqlSelect, [buttonType,buttonLevel], (err,result) => { 
-      res.send(result);
-    }); 
-   } else if(typebool == false && levelbool ==true && schoolbool == false) { 
-    db.query(sqlSelect, [buttonLevel], (err,result) => { 
-      res.send(result);
-    });
-   } else if(typebool == false && levelbool == true && schoolbool == true) { 
-    db.query(sqlSelect, [buttonLevel,buttonSchool], (err,result) => { 
-      res.send(result);
-    });  
-
-   }else if (typebool == false && levelbool == false && schoolbool == true) { 
-    db.query(sqlSelect, [buttonSchool], (err,result) => { 
-      res.send(result);
-    });  
-
-   } */
  });
  
-
-
-
 app.post("/api/insert",(req,res)=> { 
     
-
     const spellName = req.body.spellName 
     const spelllevel = req.body.spelllevel  
     const school = req.body.school 
@@ -232,28 +197,21 @@ app.post("/api/insert",(req,res)=> {
     const booksource =  req.body.booksource 
     const spelltext = req.body.spelltext 
     const spelltype = req.body.spelltype  
-    
+    const user = req.body.user
 
-   // const sqlInsert = "insert into spells (sp_no,spellName,spelllevel,school,ritual,castingtime,components,duration,spellrange,concentration,book_no,booksource _spelltext_spelltype_us_no) values (11,'test',5,'test','no')"
-   // const sqlInsert = "insert into allspellstable (spellname,spelllevel,school,ritual,castingtime,components,duration,concentration,booksource,spelltext) values (?,?,'bean','bean','bean','bean','bean','bean','bean','bean')" 
    const sqlInsert = "INSERT INTO spells (spellName,spelllevel,school,ritual,castingtime,components,duration,spellrange,concentration,booksource,spelltext,spelltype) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);"
     db.query(sqlInsert,[spellName,spelllevel,school,ritual,castingtime,components,duration,spellrange,concentration,booksource,spelltext,spelltype], (err,result)=> { 
        console.log(err);
     });
 
+    const sqlInsertUser = "INSERT INTO user_spells (user_name,spellName) VALUES (?,?);";
+    db.query(sqlInsertUser,[user,spellName], (err,result)=> { 
+      console.log(err);
+   });
+ 
+
 }); 
 
-
-/*
-app.get("/", (req,res)  => {    
-     
-const sqlInsert = "INSERT INTO allspellstable (spellname,spelllevel,school,ritual,castingtime,components,duration,concentration,booksource,spelltext) VALUES ('faerie fire','1','evocation','false', '1 action','V','concentration 1 minute','true','phb', 'beans222');"; 
- db.query(sqlInsert, (err,result)=> {   
-    // console.log(err);
-    res.send("hello pedro12345678011232223445678910101");
- });
-
-}); */
 
 app.listen(3001, () => { 
 console.log("running on  port 3001");

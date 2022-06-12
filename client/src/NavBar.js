@@ -1,5 +1,11 @@
+/**
+ * Authors: Ryan Montoya, Arsen Shintemirov, Roman Antipov
+ * TCSS 445
+ * Spring 2022
+ */
+
 import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import "./NavBar.css";
 
 function NavBar () {

@@ -1,3 +1,9 @@
+/**
+ * Authors: Ryan Montoya, Arsen Shintemirov, Roman Antipov
+ * TCSS 445
+ * Spring 2022
+ */
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
@@ -9,4 +15,3 @@ root.render(
         <App />
     </BrowserRouter>
 ); 
-//ReactDOM.render(<App />, document.getElementById('root'));
